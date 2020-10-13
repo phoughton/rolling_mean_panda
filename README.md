@@ -1,5 +1,5 @@
 # rolling_mean_panda
-A simple example of  rolling mean on a pandas dataframe, animated to help you see the effects.
+An example of  rolling mean on a pandas dataframe, animated to help you see the effects.
 
 We take the Apple closing share price for the last 40 years, and apply a rolling mean. We then animate with increasing values of the Window size for the rolling mean.
 

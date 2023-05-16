@@ -16,7 +16,7 @@ def init():
 # The function that will be called at each frame and will update the plot
 # w_size is the window size of the rolling mean
 # it is increased by 1 at each frame as the animation progresses
-# to increase the window size by a greater  amount, change the interval parameter
+# to increase the window size by a greater amount, change the interval parameter
 # it is set to 50 milliseconds in this example
 def animate(w_size):
     """
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     closes = apple_history_df.close
     avg_closes = apple_history_df.avg_close
 
+    # create the figure and axes
     fig = plt.figure(figsize=(10, 4))
     ax = fig.add_subplot(111)
     ax.set_xlabel('Year')
@@ -53,8 +54,10 @@ if __name__ == '__main__':
     line, = ax.plot(dates, avg_closes)
     title = ax.text(0.4, 0.85, "", transform=ax.transAxes, ha="center")
 
-
-
-
+    # the init function is called at the beginning of the animation
+    # the animate function is called at each frame
+    # the frames parameter is the number of frames in the animation
+    # the interval parameter is the delay between frames in milliseconds
+    # the blit parameter is set to True to only redraw the parts that have changed
     anim = animation.FuncAnimation(fig, animate, init_func=init, frames=260, interval=50, blit=True)
     anim.save('apple_stock_price_smoothing_animation.gif', fps=10)

@@ -16,17 +16,18 @@ def init():
 # The function that will be called at each frame and will update the plot
 # w_size is the window size of the rolling mean
 # it is increased by 1 at each frame as the animation progresses
-# to increase the window size by a greater amount, change the interval parameter
-# it is set to 50 milliseconds in this example
 def animate(w_size):
     """
     :param w_size: window size of the rolling mean
     :return: the updated line and title
     """
     print(w_size)
-    apple_history_df['avg_close'] = apple_history_df['close'].rolling(w_size).mean()
+    apple_history_df['avg_close'] = apple_history_df['close'].rolling(
+        w_size).mean()
     line.set_data(dates, apple_history_df['avg_close'])
-    title.set_text(f"Apple closing stock price, rolling mean. Moving window size: {w_size} days")
+    title.set_text(
+        "Apple closing stock price, rolling mean. " +
+        f"Moving window size: {w_size} days")
 
     return line, title
 
@@ -38,7 +39,8 @@ if __name__ == '__main__':
 
     apple_history_df = pd.read_csv(apple_data_file_name)
 
-    apple_history_df['avg_close'] = apple_history_df['close'].rolling(window_size).mean()
+    apple_history_df['avg_close'] = apple_history_df['close'].rolling(
+        window_size).mean()
     apple_history_df['date'] = pd.to_datetime(apple_history_df.date)
 
     dates = apple_history_df.date
@@ -58,6 +60,8 @@ if __name__ == '__main__':
     # the animate function is called at each frame
     # the frames parameter is the number of frames in the animation
     # the interval parameter is the delay between frames in milliseconds
-    # the blit parameter is set to True to only redraw the parts that have changed
-    anim = animation.FuncAnimation(fig, animate, init_func=init, frames=260, interval=50, blit=True)
+    # the blit parameter is set to True to only redraw the parts that have
+    # changed
+    anim = animation.FuncAnimation(
+        fig, animate, init_func=init, frames=260, interval=50, blit=True)
     anim.save('apple_stock_price_smoothing_animation.gif', fps=10)

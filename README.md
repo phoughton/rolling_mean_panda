@@ -1,4 +1,4 @@
-# rolling_mean_panda
+# A Pandas generated animation of effects of increasing the window size of a rolling mean 
 
 An example of  rolling mean on a pandas dataframe, animated to help you see the effects.
 
